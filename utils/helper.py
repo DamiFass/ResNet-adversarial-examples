@@ -97,12 +97,12 @@ def perform_attack(input_image, model, target_class, epsilon, num_steps=NUM_STEP
 def visualize(x, x_adv, x_grad, epsilon, clean_pred, adv_pred, clean_prob, adv_prob):
 
     x = x.squeeze(0)     #remove batch dimension # B X C H X W ==> C X H X W
-    x = x.mul(torch.FloatTensor(std).view(3,1,1)).add(torch.FloatTensor(mean).view(3,1,1)).detach().numpy()#reverse of normalization op- "unnormalize"
+    x = x.mul(torch.FloatTensor(STD).view(3,1,1)).add(torch.FloatTensor(MEAN).view(3,1,1)).detach().numpy()#reverse of normalization op- "unnormalize"
     x = np.transpose( x , (1,2,0))   # C X H X W  ==>   H X W X C
     x = np.clip(x, 0, 1)
 
     x_adv = x_adv.squeeze(0)
-    x_adv = x_adv.mul(torch.FloatTensor(std).view(3,1,1)).add(torch.FloatTensor(mean).view(3,1,1)).detach().numpy()#reverse of normalization op
+    x_adv = x_adv.mul(torch.FloatTensor(STD).view(3,1,1)).add(torch.FloatTensor(MEAN).view(3,1,1)).detach().numpy()#reverse of normalization op
     x_adv = np.transpose( x_adv , (1,2,0))   # C X H X W  ==>   H X W X C
     x_adv = np.clip(x_adv, 0, 1)
 
