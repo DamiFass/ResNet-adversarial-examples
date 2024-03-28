@@ -6,11 +6,11 @@ import collections
 import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
+import matplotlib.pyplot as plt
 
 # Constants
 MEAN = [0.485, 0.456, 0.406]
 STD = [0.229, 0.224, 0.225]
-EPSILON = 0.25
 NUM_STEPS = 5
 ALPHA = 0.025
 
@@ -58,9 +58,10 @@ def predict_class(model, input_image):
     return label_index, label_prob
 
 
-def get_class_name(label_index, labels):
+def get_class_name(label_index):
     """Get dictionary to match indices with the classes names."""
     
+    labels = get_all_labels()
     return labels[label_index]
     
 
@@ -74,7 +75,7 @@ def zero_gradients(x):
             zero_gradients(elem)
 
 
-def perform_attack(input_image, model, target_class, epsilon=EPSILON, num_steps=NUM_STEPS, alpha=ALPHA):
+def perform_attack(input_image, model, target_class, epsilon, num_steps=NUM_STEPS, alpha=ALPHA):
     """Perform adversarial attack on the input image."""
     
     for _ in range(num_steps):
@@ -90,7 +91,7 @@ def perform_attack(input_image, model, target_class, epsilon=EPSILON, num_steps=
         x_adv = input_image + total_grad
         input_image.data = x_adv
             
-    return input_image
+    return input_image, total_grad
 
 
 def visualize(x, x_adv, x_grad, epsilon, clean_pred, adv_pred, clean_prob, adv_prob):
@@ -105,7 +106,7 @@ def visualize(x, x_adv, x_grad, epsilon, clean_pred, adv_pred, clean_prob, adv_p
     x_adv = np.transpose( x_adv , (1,2,0))   # C X H X W  ==>   H X W X C
     x_adv = np.clip(x_adv, 0, 1)
 
-    x_grad = x_grad.squeeze(0).numpy()
+    x_grad = x_grad.squeeze(0).detach().numpy()
     x_grad = np.transpose(x_grad, (1,2,0))
     x_grad = np.clip(x_grad, 0, 1)
 
@@ -139,4 +140,4 @@ def visualize(x, x_adv, x_grad, epsilon, clean_pred, adv_pred, clean_prob, adv_p
     ax[2].text(0.5,-0.17, "Prediction: {}\n Probability: {}".format(adv_pred, adv_prob), size=15, ha="center",
          transform=ax[2].transAxes)
 
-   # plt.show()
+    plt.show()
