@@ -1,9 +1,24 @@
+import argparse
+import yaml
+import os
 
+from utils.helper import (get_all_labels, 
+                          load_model,
+                          preprocess_image,
+                          predict_class,
+                          get_class_name,
+                          zero_gradients,
+                          perform_attack,
+                          visualize)
 
-
-
-
-def main():
+if __name__ == '__main__':
+    
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument('--img_path', type=str, required=True, help='path to your image')
+    parser.add_argument('--target_class_index', type=int, required=True, help='index of your target class')
+    
+    args = parser.parse_args()
     
     # Load pretrained model
     model = load_model()
@@ -26,6 +41,3 @@ def main():
     adversarial_label_index, adversarial_label_prob = predict_class(model, adversarial_image)
     print(f'Adversarial prediction: {classes[adversarial_label_index]} class, with {adversarial_label_prob}% probability')
     
-
-if __name__ == "__main__":
-    run(main)
