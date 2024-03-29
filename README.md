@@ -31,3 +31,5 @@ torchvision
 
 * Example usege from Linux command line:
 ```python3 main.py --img_path=data/ostrich.jpg --target_class_index=421```
+
+* The script will display the original image, the perturbation and the adversarial image, along with the predicted classes and the probabilities with which the model has assigned each image its class.
