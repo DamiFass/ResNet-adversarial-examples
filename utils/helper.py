@@ -112,7 +112,7 @@ def visualize(x, x_adv, x_grad, epsilon, clean_pred, adv_pred, clean_prob, adv_p
 
     figure, ax = plt.subplots(1,3, figsize=(18,8))
     ax[0].imshow(x)
-    ax[0].set_title('Clean Example', fontsize=20)
+    ax[0].set_title('Clean Image', fontsize=20)
 
 
     ax[1].imshow(x_grad)
@@ -124,7 +124,7 @@ def visualize(x, x_adv, x_grad, epsilon, clean_pred, adv_pred, clean_prob, adv_p
 
 
     ax[2].imshow(x_adv)
-    ax[2].set_title('Adversarial Example', fontsize=20)
+    ax[2].set_title('Adversarial Image', fontsize=20)
 
     ax[0].axis('off')
     ax[2].axis('off')

@@ -15,8 +15,8 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser()
     
-    parser.add_argument('--img_path', default='', type=str, required=False, help='path to your image')
-    parser.add_argument('--target_class_index', default=9, type=int, required=False, help='index of your target class - chose between 1 and 1000')
+    parser.add_argument('--img_path', default='data/espresso.jpg', type=str, required=False, help='path to your image')
+    parser.add_argument('--target_class_index', default=9, type=int, required=False, help='index of your target class - chose between 0 and 999')
     parser.add_argument('--epsilon', default=0.25, type=float, required=False, help='magnitude of modification to the inital image')
     args = parser.parse_args()
         
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     adv_label = get_class_name(adversarial_label_index)
     print('\n')
     print(f'The ADVERSARIAL IMAGE with target class {target_label.upper()} was predicted by the model as {adv_label.upper()}, with {adversarial_label_prob}% probability')
+    print('\n')
     
     # Visualize output:
     visualize(input_image, adversarial_image, gradient, args.epsilon, initial_label, adv_label, initial_label_prob, adversarial_label_prob)
