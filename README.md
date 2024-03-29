@@ -8,7 +8,7 @@ There are several methods to create adversarial images for image recognition dee
 
 The idea behind this method is to use the backpropagated gradients to modify the input image, with the target of maximising the loss (instead of using the gradient to modify the network weights with the target of minimizing the loss).
 
-In this project we implemented an iterative versione of the FGSM method, where essentially the algorithm is repeated for a predefined number of steps, initializing the adversarial image as the original image and taking a small step at each iteration along the direction of the gradient.
+In this project we implemented an iterative version of the FGSM method, where essentially the algorithm is repeated for a predefined number of steps, initializing the adversarial image as the original image and taking a small step at each iteration along the direction of the gradient.
 
 ## Dependencies
 
