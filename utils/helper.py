@@ -25,7 +25,7 @@ def get_all_labels():
 def load_model():
     """Load and return the pre-trained ResNet50 model."""
     
-    model = torchvision.models.resnet50(pretrained=True)
+    model = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.DEFAULT)
     model.eval()
     
     return model
