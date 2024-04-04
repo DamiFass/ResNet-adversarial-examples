@@ -1,6 +1,6 @@
 # Project Title
 
-Small Python project to easily generate adversarial examples for the [ResNet50](https://arxiv.org/pdf/1512.03385.pdf)
+Small Python project to easily generate adversarial examples for the [ResNet50](https://arxiv.org/pdf/1512.03385.pdf) model.
 
 ## Description
 
@@ -26,7 +26,7 @@ torchvision
 
 * The ```main.py``` script takes in input 3 arguments:
     * img-path: the path to the image you want to use. The default value is set to one of the examples in the data folder, an image of an espresso coffe. 
-    * target_index_class: the index of the target class. We want our model to classify the adversarial image as this class. This should be a number between 0 and 999, because the ResNet50 model we are attacking has been trained on the ImageNet1K_v1 dataset, which has 1000 classes. You can select any number, as long as it is different from the index of the correct class. The default is set to 9, the index of the 'ostrich' class.
+    * target_index_class: the index of the target class. We want our model to classify the adversarial image as this class. This should be a number between 0 and 999, because the ResNet50 model we are attacking has been trained on the ImageNet1K dataset, which has 1000 classes. You can select any number, as long as it is different from the index of the correct class. The default is set to 9, the index of the 'ostrich' class.
     * epsilon: this is the magnitude of the perturbation. Bigger values are more likely to successfully fool the model, but they are also more likey to visibly modify the input image. The default is 0.25.
 
 * Example usege from Linux command line:
