@@ -1,4 +1,4 @@
-# This file may be used to create an environment using:
+# This file may be used to create an::
 # $ conda create --name <env> --file <this file>
 # platform: linux-64
 numpy=1.24.4=pypi_0
